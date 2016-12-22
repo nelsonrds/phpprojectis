@@ -3,7 +3,6 @@
 if(isset($_POST['user']) && isset($_POST['password'])){
     include_once 'connection.php';
 
-    
     $user = $_POST['user'];
     $password = $_POST['password'];
 

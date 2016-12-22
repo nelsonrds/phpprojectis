@@ -5,7 +5,6 @@ if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
     header("location:index.php");
 }
 
-
 session_write_close();
 ?>
 
@@ -62,7 +61,13 @@ session_write_close();
                     <div class="col-sm-offset-2 col-sm-10">
                     <input type="submit" name="go" value="registar" class="btn btn-primary">    
                     <input type="reset" value="limpar" class="btn btn-danger">    
-                    <button type="cancel" class="btn btn-default" onclick="javascript:window.location='ahome.php';">Cancel</button>
+                    </div>
+                </form>
+            
+                <br><br>
+                <form action="ahome.php" class="form-horizontal">
+                    <div class="col-sm-offset-7 col-sm-10">
+                        <input type="submit" name="go" value="Voltar" class="btn btn-default">     
                     </div>
                 </form>
             
@@ -72,32 +77,36 @@ session_write_close();
             
             <?php
                 if(isset($_POST['go'])){
-                    if(isset($_POST['name']) && isset($_POST['user']) && isset($_POST['pass1']) && isset($_POST['pass2']) && isset($_POST['email']) && isset($_POST['name'])){
-                        $pass1 = $_POST['pass1'];
-                        $pass2 = $_POST['pass2'];
-                        if($pass1 == $pass2){
-                            //entrou!
-
-                            include_once 'connection.php';
-
-                            $name = $_POST['name'];
-                            $username = $_POST['user'];
-                            $password = $_POST['pass1'];
-                            $repassword = $_POST['pass2'];
-                            $email = $_POST['email'];
-                            $isadmin = $_POST['admin'];
+                    
+                    $name = $_POST['name'];
+                    $username = $_POST['user'];
+                    $password = $_POST['pass1'];
+                    $repassword = $_POST['pass2'];
+                    $email = $_POST['email'];
+                    
+                    if(!empty($name) && !empty($username) && !empty($password) && !empty($repassword) && !empty($email)){
+                        //verificar na base de dados
+                        include_once 'connection.php';
+                        if($password == $repassword){
+                            
+                            
 
                             $sql = "INSERT INTO Users (name, username, password, repassword, email, isadmin)
                             VALUES ('$name', '$username', '$password', '$repassword', '$email', '$isadmin')";
 
                             if ($conn->query($sql) === TRUE) {
-                                echo "New record created successfully";
+                                echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
+                                
+                                //criar repositorio
+                                if (!file_exists('clients/'.$username)) {
+                                    mkdir('clients/'.$username, 0777, true);
+                                }
                             } else {
                                 echo "Error: " . $sql . "<br>" . $conn->error;
                             }
 
                         }else{
-                            echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
+                             echo '<div class="alert alert-danger"><strong>Fail!</strong> Password inválida!</div>';
                         }
                     }else{
                         echo '<div class="alert alert-danger"><strong>Fail!</strong> Algum campo está vazio!</div>';
