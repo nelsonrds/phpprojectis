@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
+if(!isset($_SESSION['user'])){
     header("location:index.php");
 }
 
@@ -18,7 +18,7 @@ $data = $res->fetch_assoc();
 $name = $data['name'];
 $username = $data['username'];
 $password = $data['password'];
-$repassword = $data['repassword'];
+$repassword = $data['password'];
 $email = $data['email'];
 $isadmin = $data['isadmin'];
 if($isadmin == 1){
@@ -33,9 +33,9 @@ session_write_close();
 <html>
     <head>
     </head>
-    
+
     <?php include 'header.php'; ?>
-        
+
     <body>
         <div class="container">
             <div class="page-header">
@@ -81,19 +81,19 @@ session_write_close();
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" name="go" value="editar" class="btn btn-primary">    
-                    <input type="reset" value="limpar" class="btn btn-danger">    
-                        <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>  
+                    <input type="submit" name="go" value="editar" class="btn btn-primary">
+                    <input type="reset" value="limpar" class="btn btn-danger">
+                        <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>
                     </div>
                 </form>
-                    
+
             <br>
             <br>
             <br>
-            
+
             <?php
                 if(isset($_POST['go'])){
-                    
+
                     $name = $_POST['name'];
                     $username = $_POST['user'];
                     $password = $_POST['pass1'];
@@ -104,14 +104,15 @@ session_write_close();
                     }else{
                         $isadmin = "0";
                     }
-                    
+
                     if(!empty($name) && !empty($username) && !empty($password) && !empty($repassword) && !empty($email)){
                         //verificar na base de dados
                         include_once 'connection.php';
-                                                
+
                         if(1 == 1){
                             if($password == $repassword){
-                                $sql = "UPDATE Users SET name = '$name', username = '$username', password = '$password', repassword = '$repassword', email = '$email', isadmin = '$isadmin', status = '1' WHERE id_user = '$id' ";
+                                $passmd5 = md5($password);
+                                $sql = "UPDATE Users SET name = '$name', username = '$username', password = '$passmd5', email = '$email', isadmin = '$isadmin', status = '1' WHERE id_user = '$id' ";
 
                                 if ($conn->query($sql) === TRUE) {
                                     echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Alterado com Sucesso!</div>';
@@ -120,7 +121,7 @@ session_write_close();
                                     if (!file_exists('clients/'.$username)) {
                                         mkdir('clients/'.$username, 0777, true);
                                     }
-                                    
+
                                     //adicionar aos logs
                                     $comment = "O Client ". $name. " foi editado!";
                                     $sql2 = "INSERT INTO activiry (comment) VALUES ('$comment')";
@@ -135,7 +136,7 @@ session_write_close();
                         }else{
                             echo '<div class="alert alert-danger"><strong>Fail!</strong> Utilizador já existe!</div>';
                         }
-                        
+
                     }else{
                         echo '<div class="alert alert-danger"><strong>Fail!</strong> Algum campo está vazio!</div>';
                     }
@@ -144,5 +145,5 @@ session_write_close();
         </div>
         <?php include 'footer.php'; ?>
     </body>
-    
+
 </html>

@@ -1,6 +1,6 @@
 <?php
   $ch = curl_init();
-  $fields = array( 'user'=>'teste4', 'pass'=>'202cb962ac59075b964b07152d234b70');
+  $fields = array( 'user'=>'teste4', 'pass'=>'202cb962ac59075b964b07152d234b7');
   $postvars = '';
   foreach($fields as $key=>$value) {
     $postvars .= $key . "=" . $value . "&";
@@ -13,6 +13,18 @@
   curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
   curl_setopt($ch,CURLOPT_TIMEOUT, 20);
   $response = curl_exec($ch);
-  print "curl response is:" . $response;
   curl_close ($ch);
+
+
+  $json = json_decode($response, true);
+
+  if ($json['posts']['0'] == null) {
+    print("estou vazio");
+  } else {
+    $user = $json['posts']['0']['post']['username'];
+    $pass = $json['posts']['0']['post']['password'];
+    $isAdmin = $json['posts']['0']['post']['isadmin'];
+  }
+
+
 ?>
