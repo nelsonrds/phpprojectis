@@ -92,9 +92,10 @@ session_write_close();
 
                         if($userrecived->num_rows == 0){
                             if($password == $repassword){
+                                $passmd5 = md5($password);
 
-                                $sql = "INSERT INTO Users (name, username, password, repassword, email, isadmin, status)
-                                VALUES ('$name', '$username', '$password', '$repassword', '$email', '$isadmin', '1')";
+                                $sql = "INSERT INTO Users (name, username, password, email, isadmin, status)
+                                VALUES ('$name', '$username', '$passmd5', '$email', '$isadmin', '1')";
 
                                 if ($conn->query($sql) === TRUE) {
                                     echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
