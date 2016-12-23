@@ -1,8 +1,15 @@
 <?php
+
 session_start();
 
 if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
     header("location:index.php");
+}
+
+if(isset($_SESSION['isadmin'])) {
+  if (($_SESSION['isadmin'])==1) {
+    header("location:ahome.php");
+  }
 }
 $name = $_SESSION['name'];
 
@@ -12,7 +19,7 @@ session_write_close();
 
 <html>
     <?php include 'header.php'; ?>
-    
+
     <body>
         <div class="container">
          <div class="page-header">
@@ -42,9 +49,8 @@ session_write_close();
                         ?>
                     </div>
             </div>
-            
+
         </div>
         <?php include 'footer.php'; ?>
     </body>
 </html>
-

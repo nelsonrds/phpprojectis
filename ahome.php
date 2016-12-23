@@ -4,15 +4,21 @@ session_start();
 if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
     header("location:index.php");
 }
+
+if(isset($_SESSION['isadmin'])) {
+  if (($_SESSION['isadmin'])!=1) {
+    header("location:index.php");
+  }
+}
 session_write_close();
 ?>
 
 <html>
-        
+
     <?php include 'header.php'; ?>
-        
+
     <body>
-        
+
         <div class="container">
             <div class="page-header">
               <h1>Administration Page <small> - XPTO Company</small> </h1>
@@ -41,7 +47,7 @@ session_write_close();
                               </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                     include_once 'connection.php';
                                     $q = "select * from users";
                                     $result = $conn->query($q);
@@ -63,15 +69,15 @@ session_write_close();
                                     } else {
                                         echo "0 results";
                                     }
-                                ?>                
+                                ?>
                             </tbody>
                         </table>
                     </div>
             <div class="col-md-2 col-sm-offset-10">
                 <a href="registar.php"><button type="button" class="btn btn-warning">Novo utilizador</button></a>
-            </div>    
+            </div>
             <br><br><br>
-            
+
             <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4>Logs</h4>
@@ -83,10 +89,9 @@ session_write_close();
                         </div>
                     </div>
                 </div>
-                
+
             <br>
-                        
+
         <?php include 'footer.php'; ?>
     </body>
 </html>
-

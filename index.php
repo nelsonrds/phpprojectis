@@ -1,8 +1,12 @@
 <?php
     session_start();
-    
+
     if(isset($_SESSION['user'])){
-        header("location:home.php");
+        if ($_SESSION['isadmin']==1) {
+          header("location:ahome.php");
+        } else {
+          header("location:home.php");
+        }
     }
     session_write_close();
 ?>
@@ -21,14 +25,13 @@
                         <input type="text" name="user" placeholder="username" class="form-control"><br>
                         <input type="password" name="password" placeholder="*******" class="form-control"><br>
                         <input type="submit" value="Enter" class="form-control">
-                    </form>    
+                    </form>
                 </div>
             </div>
-            
+
         </div>
-        
+
         <?php include 'footer.php'; ?>
-    
+
     </body>
 </html>
-
