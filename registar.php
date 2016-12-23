@@ -55,22 +55,16 @@ session_write_close();
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="ad">Admin:</label>
                         <div class="checkbox">
-                            <label><input type="checkbox" value="" id="ad" name="admin[]"></label>
+                            <label><input type="checkbox" value="is" id="ad" name="admin"></label>
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
                     <input type="submit" name="go" value="registar" class="btn btn-primary">    
                     <input type="reset" value="limpar" class="btn btn-danger">    
+                        <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>  
                     </div>
                 </form>
-            
-                <br><br>
-                <form action="ahome.php" class="form-horizontal">
-                    <div class="col-sm-offset-7 col-sm-10">
-                        <input type="submit" name="go" value="Voltar" class="btn btn-default">     
-                    </div>
-                </form>
-            
+                    
             <br>
             <br>
             <br>
@@ -83,31 +77,48 @@ session_write_close();
                     $password = $_POST['pass1'];
                     $repassword = $_POST['pass2'];
                     $email = $_POST['email'];
+                    if(isset($_POST['admin'])){
+                        $isadmin = "1";
+                    }else{
+                        $isadmin = "0";
+                    }
                     
                     if(!empty($name) && !empty($username) && !empty($password) && !empty($repassword) && !empty($email)){
                         //verificar na base de dados
                         include_once 'connection.php';
-                        if($password == $repassword){
-                            
-                            
-
-                            $sql = "INSERT INTO Users (name, username, password, repassword, email, isadmin)
-                            VALUES ('$name', '$username', '$password', '$repassword', '$email', '$isadmin')";
-
-                            if ($conn->query($sql) === TRUE) {
-                                echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
+                        
+                        $ver = "Select * from users where username='$username'";
+                        $userrecived = $conn->query($ver);
+                        
+                        if($userrecived->num_rows == 0){
+                            if($password == $repassword){
                                 
-                                //criar repositorio
-                                if (!file_exists('clients/'.$username)) {
-                                    mkdir('clients/'.$username, 0777, true);
-                                }
-                            } else {
-                                echo "Error: " . $sql . "<br>" . $conn->error;
-                            }
+                                $sql = "INSERT INTO Users (name, username, password, repassword, email, isadmin, status)
+                                VALUES ('$name', '$username', '$password', '$repassword', '$email', '$isadmin', '1')";
 
+                                if ($conn->query($sql) === TRUE) {
+                                    echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
+
+                                    //criar repositorio
+                                    if (!file_exists('clients/'.$username)) {
+                                        mkdir('clients/'.$username, 0777, true);
+                                    }
+                                    
+                                    //adicionar aos logs
+                                    $comment = "O Client ". $name. " foi adicionado ao sistema!";
+                                    $sql2 = "INSERT INTO activiry (comment) VALUES ('$comment')";
+                                    $conn->query($sql2);
+                                } else {
+                                    echo "Error: " . $sql . "<br>" . $conn->error;
+                                }
+
+                            }else{
+                                 echo '<div class="alert alert-danger"><strong>Fail!</strong> Password inválida!</div>';
+                            }
                         }else{
-                             echo '<div class="alert alert-danger"><strong>Fail!</strong> Password inválida!</div>';
+                            echo '<div class="alert alert-danger"><strong>Fail!</strong> Utilizador já existe!</div>';
                         }
+                        
                     }else{
                         echo '<div class="alert alert-danger"><strong>Fail!</strong> Algum campo está vazio!</div>';
                     }
