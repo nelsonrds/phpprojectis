@@ -11,9 +11,9 @@ session_write_close();
 <html>
     <head>
     </head>
-    
+
     <?php include 'header.php'; ?>
-        
+
     <body>
         <div class="container">
             <div class="page-header">
@@ -59,19 +59,19 @@ session_write_close();
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" name="go" value="registar" class="btn btn-primary">    
-                    <input type="reset" value="limpar" class="btn btn-danger">    
-                        <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>  
+                    <input type="submit" name="go" value="registar" class="btn btn-primary">
+                    <input type="reset" value="limpar" class="btn btn-danger">
+                        <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>
                     </div>
                 </form>
-                    
+
             <br>
             <br>
             <br>
-            
+
             <?php
                 if(isset($_POST['go'])){
-                    
+
                     $name = $_POST['name'];
                     $username = $_POST['user'];
                     $password = $_POST['pass1'];
@@ -82,17 +82,17 @@ session_write_close();
                     }else{
                         $isadmin = "0";
                     }
-                    
+
                     if(!empty($name) && !empty($username) && !empty($password) && !empty($repassword) && !empty($email)){
                         //verificar na base de dados
                         include_once 'connection.php';
-                        
+
                         $ver = "Select * from users where username='$username'";
                         $userrecived = $conn->query($ver);
-                        
+
                         if($userrecived->num_rows == 0){
                             if($password == $repassword){
-                                
+
                                 $sql = "INSERT INTO Users (name, username, password, repassword, email, isadmin, status)
                                 VALUES ('$name', '$username', '$password', '$repassword', '$email', '$isadmin', '1')";
 
@@ -103,11 +103,12 @@ session_write_close();
                                     if (!file_exists('clients/'.$username)) {
                                         mkdir('clients/'.$username, 0777, true);
                                     }
-                                    
+
                                     //adicionar aos logs
                                     $comment = "O Client ". $name. " foi adicionado ao sistema!";
                                     $sql2 = "INSERT INTO activiry (comment) VALUES ('$comment')";
                                     $conn->query($sql2);
+                                    header("location:ahome.php");
                                 } else {
                                     echo "Error: " . $sql . "<br>" . $conn->error;
                                 }
@@ -118,7 +119,7 @@ session_write_close();
                         }else{
                             echo '<div class="alert alert-danger"><strong>Fail!</strong> Utilizador já existe!</div>';
                         }
-                        
+
                     }else{
                         echo '<div class="alert alert-danger"><strong>Fail!</strong> Algum campo está vazio!</div>';
                     }
@@ -127,5 +128,5 @@ session_write_close();
         </div>
         <?php include 'footer.php'; ?>
     </body>
-    
+
 </html>
