@@ -5,6 +5,28 @@ if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
     header("location:index.php");
 }
 
+$id = $_GET['id'];
+
+include_once 'connection.php';
+
+$sear = "Select * from users where id_user = '$id'";
+
+$res = $conn->query($sear);
+
+$data = $res->fetch_assoc();
+
+$name = $data['name'];
+$username = $data['username'];
+$password = $data['password'];
+$repassword = $data['repassword'];
+$email = $data['email'];
+$isadmin = $data['isadmin'];
+if($isadmin == 1){
+    $isadmin = 'checked="checked"';
+}else{
+    $isadmin = "";
+}
+
 session_write_close();
 ?>
 
@@ -19,47 +41,47 @@ session_write_close();
             <div class="page-header">
               <h1>Empresa XPTO - IS Trab1</h1>
             </div>
-            <h3>Registar Utilizador</h3>
+            <h3>Editar Utilizador</h3>
             <br>
-                <form action="registar.php" method="post" class="form-horizontal">
+                <form action="edit.php?id=<?php echo $id;?>" method="post" class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="nam">Nome:</label>
                           <div class="col-sm-5">
-                            <input type="text" class="form-control" name="name" id="nam" placeholder="name">
+                            <input type="text" class="form-control" name="name" id="nam" value = "<?php echo $name;?>" placeholder="name">
                           </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="us">Username:</label>
                           <div class="col-sm-5">
-                            <input type="text" class="form-control" name="user" id="us" placeholder="username">
+                            <input type="text" class="form-control" name="user" value="<?php echo $username;?>" id="us" placeholder="username">
                           </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="pw1">Password:</label>
                           <div class="col-sm-5">
-                            <input type="password" class="form-control" name="pass1" id="pw1" placeholder="*******">
+                            <input type="password" class="form-control" value="<?php echo $password;?>" name="pass1" id="pw1" placeholder="*******">
                           </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="pw2">Re-Password:</label>
                           <div class="col-sm-5">
-                            <input type="password" class="form-control" name="pass2" id="pw2" placeholder="*******">
+                            <input type="password" class="form-control" value="<?php echo $repassword;?>" name="pass2" id="pw2" placeholder="*******">
                           </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="mail">Email:</label>
                           <div class="col-sm-5">
-                            <input type="email" class="form-control" name="email" id="mail" placeholder="something@ipvc.pt">
+                            <input type="email" class="form-control" value="<?php echo $email;?>" name="email" id="mail" placeholder="something@ipvc.pt">
                           </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="ad">Admin:</label>
                         <div class="checkbox">
-                            <label><input type="checkbox" value="is" id="ad" name="admin"></label>
+                            <label><input type="checkbox" <?php echo $isadmin; ?> value="<?php echo $isadmin;?>" id="ad" name="admin"></label>
                         </div>
                     </div>
                     <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" name="go" value="registar" class="btn btn-primary">    
+                    <input type="submit" name="go" value="editar" class="btn btn-primary">    
                     <input type="reset" value="limpar" class="btn btn-danger">    
                         <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>  
                     </div>
@@ -86,18 +108,13 @@ session_write_close();
                     if(!empty($name) && !empty($username) && !empty($password) && !empty($repassword) && !empty($email)){
                         //verificar na base de dados
                         include_once 'connection.php';
-                        
-                        $ver = "Select * from users where username='$username'";
-                        $userrecived = $conn->query($ver);
-                        
-                        if($userrecived->num_rows == 0){
+                                                
+                        if(1 == 1){
                             if($password == $repassword){
-                                
-                                $sql = "INSERT INTO Users (name, username, password, repassword, email, isadmin, status)
-                                VALUES ('$name', '$username', '$password', '$repassword', '$email', '$isadmin', '1')";
+                                $sql = "UPDATE Users SET name = '$name', username = '$username', password = '$password', repassword = '$repassword', email = '$email', isadmin = '$isadmin', status = '1' WHERE id_user = '$id' ";
 
                                 if ($conn->query($sql) === TRUE) {
-                                    echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
+                                    echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Alterado com Sucesso!</div>';
 
                                     //criar repositorio
                                     if (!file_exists('clients/'.$username)) {
@@ -105,7 +122,7 @@ session_write_close();
                                     }
                                     
                                     //adicionar aos logs
-                                    $comment = "O Client ". $name. " foi adicionado ao sistema!";
+                                    $comment = "O Client ". $name. " foi editado!";
                                     $sql2 = "INSERT INTO activiry (comment) VALUES ('$comment')";
                                     $conn->query($sql2);
                                 } else {

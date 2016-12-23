@@ -68,5 +68,7 @@ session_write_close();
                             ?>
             </div>
         </div>
+        
+        <?php include 'footer.php'; ?>
     </body>
 </html>

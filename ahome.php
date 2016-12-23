@@ -56,7 +56,7 @@ session_write_close();
                                                 echo "<td>".$row["status"]."</td>";
                                                 echo "<td>".$row["isadmin"]."</td>";
                                                 echo '<td><a href="repository.php?id='.$row["id_user"].'">./'.$row["username"].'</a</td>';
-                                                echo '<td><a href="delete.php?id='.$row["id_user"].'"><img src="images/delete.png"style="width:30px;height:30px;"></a><a href="activity.php?id='.$row["id_user"].'"><img src="images/activity.png" style="width:30px;height:30px;"></a></td>';
+                                                echo '<td><a href="delete.php?id='.$row["id_user"].'"><img src="images/delete.png"style="width:30px;height:30px;"></a><a href="edit.php?id='.$row["id_user"].'"><img src="images/activity.png" style="width:30px;height:30px;"></a></td>';
                                                 echo "</tr>";
                                             }
                                         }
@@ -86,7 +86,7 @@ session_write_close();
                 
             <br>
                         
-        
+        <?php include 'footer.php'; ?>
     </body>
 </html>
 
