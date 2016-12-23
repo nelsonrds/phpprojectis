@@ -1,7 +1,7 @@
 <?php
-  if(isset($_GET['user']) && $_GET['pass']) {
-    $user = $_GET['user'];
-    $pass = $_GET['pass'];
+  if(isset($_POST['user']) && $_POST['pass']) {
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
 
     /* connect to the db */
   	$link = mysql_connect('localhost','root','') or die('Cannot connect to the DB');
