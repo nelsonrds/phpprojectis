@@ -3,7 +3,9 @@ session_start();
 
 $user = $_POST['user'];
 $password = $_POST['password'];
-$isadmin = $_SESSION['isadmin'];
+if(isset($_SESSION['isadmin'])){
+    $isadmin = $_SESSION['isadmin'];
+}
 
 include_once 'verify.php';
 
