@@ -43,7 +43,7 @@ session_write_close();
 
                         while(($entry = readdir($resources)) !== FALSE){
                             if($entry !='.' && $entry != '..'){
-                                echo '<p><a href="'.$dir."/".$entry.'">'."./".$entry .'</a><p>';
+                                echo '<p><a href="file.php?dir='.$dir."/".$entry.'">'."./".$entry .'</a></p>';
                             }
                         }
                         ?>
