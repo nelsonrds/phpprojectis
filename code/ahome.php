@@ -25,7 +25,7 @@ session_write_close();
             </div>
             <div class="row">
                 <div class="col-md-11">
-                    <h3>Bem vindo! <?php echo $_SESSION['name'];?></h3>
+                    <h3>Bem vindo! <small><?php echo $_SESSION['name'];?></small></h3>
                 </div>
                 <div class="col-md-1">
                     <h3><a href="logout.php">Logout</a></h3>
