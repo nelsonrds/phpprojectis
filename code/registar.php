@@ -101,8 +101,8 @@ session_write_close();
                                     echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
 
                                     //criar repositorio
-                                    if (!file_exists('clients/'.$username)) {
-                                        mkdir('clients/'.$username, 0777, true);
+                                    if (!file_exists('../clients/'.$username)) {
+                                        mkdir('../clients/'.$username, 0777, true);
                                     }
 
                                     //adicionar aos logs

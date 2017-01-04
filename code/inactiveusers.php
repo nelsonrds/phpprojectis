@@ -1,38 +1,27 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
     header("location:index.php");
 }
 
-if(isset($_SESSION['isadmin'])) {
-  if (($_SESSION['isadmin'])!=1) {
-    header("location:index.php");
-  }
-}
 session_write_close();
 ?>
 
 <html>
+    <head>
+    </head>
 
     <?php include 'header.php'; ?>
 
     <body>
-
         <div class="container">
             <div class="page-header">
-              <h1>Administration Page <small> - XPTO Company</small> </h1>
+              <h1>Empresa XPTO - IS Trab1</h1>
             </div>
-            <div class="row">
-                <div class="col-md-11">
-                    <h3>Bem vindo! <?php echo $_SESSION['name'];?></h3>
-                </div>
-                <div class="col-md-1">
-                    <h3><a href="logout.php">Logout</a></h3>
-                </div>
-            </div>
+            <h3>Utilizadores Inativos</h3>
             <br>
-            <div class="panel panel-default">
+             <div class="panel panel-default">
                 <table class="table table-hover table-striped">
                     <thead>
                       <tr>
@@ -53,7 +42,7 @@ session_write_close();
                             $result = $conn->query($q);
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    if($row['status'] == 1){
+                                    if($row['status'] == 0){
                                         echo "<tr>";
                                         echo "<td>".$row["id_user"]."</td>";
                                         echo "<td>".$row["username"]."</td>";
@@ -62,7 +51,7 @@ session_write_close();
                                         echo "<td>".$row["status"]."</td>";
                                         echo "<td>".$row["isadmin"]."</td>";
                                         echo '<td><a href="repository.php?id='.$row["id_user"].'">./'.$row["username"].'</a</td>';
-                                        echo '<td><a href="delete.php?id='.$row["id_user"].'"><img src="images/delete.png"style="width:30px;height:30px;"></a><a href="edit.php?id='.$row["id_user"].'"><img src="images/activity.png" style="width:30px;height:30px;"></a></td>';
+                                        echo '<td><a href="reactiveuser.php?id='.$row["id_user"].'"><img src="images/reactive.png"style="width:30px;height:30px;"></a></td>';
                                         echo "</tr>";
                                     }
                                 }
@@ -71,30 +60,19 @@ session_write_close();
                             }
                         ?>
                     </tbody>
-                </table>
-                
+                </table>                
             </div>
             <div class="row">
-                <div class="col-md-8"></div>
-                <div class="col-md-4">
-                    <a href="inactiveusers.php"><button type="button" class="btn btn-default">Utilizadores Inativos</button></a>
-                    <a href="registar.php"><button type="button" class="btn btn-warning">Novo utilizador</button></a>
+                <div class="col-md-11"></div>
+                <div class="col-md-1">
+                    <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-offset-8">
-                
-            </div>
-            <br><br><br>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3>Logs</h3>
-                </div>
-                <?php
-                    include_once ("logs.php");
-                ?>
-            </div>
+                             
+             
         </div>
-        <?php include 'footer.php'; ?>
         
+        <?php include 'footer.php'; ?>
     </body>
+
 </html>
