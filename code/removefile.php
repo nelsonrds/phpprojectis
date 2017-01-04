@@ -6,7 +6,7 @@ if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
 }
 
 $id = $_GET['id'];
-$filepath = $_GET['fileRemove'];
+$filepath = "../".$_GET['fileRemove'];
 
 if(file_exists($filepath)){
     unlink($filepath);

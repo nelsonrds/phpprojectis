@@ -36,15 +36,28 @@ session_write_close();
             <div class="panel panel-default">
                 <div class="panel-body">
                     <?php
-                        $dir = "clients/".$username;
-                        $resources = opendir($dir);
-
-                        while(($entry = readdir($resources)) !== FALSE){
-                            if($entry !='.' && $entry != '..'){
-                                //'.$dir."/".$entry.'
-                                echo '<p><a href="file.php?dir='.$dir."/".$entry.'">'."./".$entry .'</a> <a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';   
+                    $dir = "../clients/".$username;
+                    $size = 0;
+                    if(is_dir($dir) && !$username==""){
+                            $resources = opendir($dir);
+                            while(($entry = readdir($resources)) !== FALSE){
+                                while(($entry = readdir($resources)) !== FALSE){
+                                    if($entry !='.' && $entry != '..'){
+                                        //'.$dir."/".$entry.'
+                                        echo '<p><a href="file.php?dir='.$dir."/".$entry.'">'."./".$entry .'</a> <a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';   
+                                    }
+                                    $size++;
+                                }
+                                if($size == 1){
+                                    echo "Nenhum ficheiro no sistema!";
+                                }
                             }
+                        }else{
+                            echo "Nenhuma diretoria criada!";
+                            echo '<a href="createdir.php?name='.$username.'&id='.$id.'"></a>';
+                            
                         }
+                                            
                         ?>
                 </div>
             </div>

@@ -9,7 +9,7 @@ echo $id = $_POST['id'];
 echo $username = $_POST['username'];
 
 
-$target_dir = "clients/".$username."/";
+$target_dir = "../clients/".$username."/";
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $pdftype = pathinfo($target_file,PATHINFO_EXTENSION);

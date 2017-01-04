@@ -38,14 +38,23 @@ session_write_close();
             <div class="panel panel-default">
                 <div class="panel-body">
                     <?php
-                        $dir = "clients/".$_SESSION['user'];
-                        $resources = opendir($dir);
-
-                        while(($entry = readdir($resources)) !== FALSE){
-                            if($entry !='.' && $entry != '..'){
-                                echo '<p><a href="file.php?dir='.$dir."/".$entry.'">'."./".$entry .'</a></p>';
+                        $dir = "../clients/".$_SESSION['user'];
+                        $size = 0;
+                        if(is_dir($dir)){
+                            $resources = opendir($dir);
+                            while(($entry = readdir($resources)) !== FALSE){
+                                if($entry !='.' && $entry != '..'){
+                                    echo '<p><a href="file.php?dir='.$dir."/".$entry.'">'."./".$entry .'</a></p>';
+                                }
+                                $size++;
                             }
+                            if($size == 2){
+                                echo "Nenhum ficheiro no sistema!";
+                            }
+                        }else{
+                            echo "Nenhum ficheiro adicionado!";
                         }
+                       
                         ?>
                     </div>
             </div>

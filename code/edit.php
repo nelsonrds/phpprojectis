@@ -53,7 +53,7 @@ session_write_close();
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="us">Username:</label>
                           <div class="col-sm-5">
-                            <input type="text" class="form-control" name="user" value="<?php echo $username;?>" id="us" placeholder="username">
+                            <input type="text" class="form-control" name="user" value="<?php echo $username;?>" disabled id="us" placeholder="username">
                           </div>
                     </div>
                     <div class="form-group">
