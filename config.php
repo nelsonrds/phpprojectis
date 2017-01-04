@@ -1,3 +1,3 @@
 <?php
-    $url = "http://localhost/ISFINAL2/ws/loginws.php";
+    $url = "http://localhost/sir/phpprojectis/ws/loginws.php";
 ?>
