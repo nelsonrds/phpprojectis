@@ -41,7 +41,8 @@ session_write_close();
 
                         while(($entry = readdir($resources)) !== FALSE){
                             if($entry !='.' && $entry != '..'){
-                                echo '<p><a href="'.$dir."/".$entry.'">'."./".$entry .'</a> <a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';
+                                //'.$dir."/".$entry.'
+                                echo '<p><a href="file.php?dir='.$dir."/".$entry.'">'."./".$entry .'</a> <a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';   
                             }
                         }
                         ?>
