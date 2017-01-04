@@ -32,44 +32,6 @@ session_write_close();
                 </div>
             </div>
             <br>
-<<<<<<< HEAD
-                    <div class="panel panel-default">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Status</th>
-                                <th>Admin</th>
-                                <th>Respository</th>
-                                <th>More</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    include_once 'connection.php';
-                                    $q = "select * from users";
-                                    $result = $conn->query($q);
-                                    if ($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            if($row['status'] == 1){
-                                                echo "<tr>";
-                                                echo "<td>".$row["id_user"]."</td>";
-                                                echo "<td>".$row["username"]."</td>";
-                                                echo "<td>".$row["name"]."</td>";
-                                                echo "<td>".$row["email"]."</td>";
-                                                echo "<td>".$row["status"]."</td>";
-                                                echo "<td>".$row["isadmin"]."</td>";
-                                                echo '<td><a href="repository.php?id='.$row["id_user"].'">./'.$row["username"].'</a></td>';
-                                                echo '<td><a href="delete.php?id='.$row["id_user"].'"><img src="images/delete.png"style="width:30px;height:30px;"></a><a href="edit.php?id='.$row["id_user"].'"><img src="images/activity.png" style="width:30px;height:30px;"></a></td>';
-                                                echo "</tr>";
-                                            }
-                                        }
-                                    } else {
-                                        echo "0 results";
-=======
             <div class="panel panel-default">
                 <table class="table table-hover table-striped">
                     <thead>
@@ -102,7 +64,6 @@ session_write_close();
                                         echo '<td><a href="repository.php?id='.$row["id_user"].'">./'.$row["username"].'</a</td>';
                                         echo '<td><a href="delete.php?id='.$row["id_user"].'"><img src="images/delete.png"style="width:30px;height:30px;"></a><a href="edit.php?id='.$row["id_user"].'"><img src="images/activity.png" style="width:30px;height:30px;"></a></td>';
                                         echo "</tr>";
->>>>>>> 8fd940f0bb0492074300fb389ed9e3854f3ba5d0
                                     }
                                 }
                             } else {
