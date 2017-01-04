@@ -1,31 +1,28 @@
-<?php
-
-
-if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
-    header("location:index.php");
-}
-
-include_once 'connection.php';
-
-$que = "select * from activiry";
-
-$result = $conn->query($que);
-
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-    if($result->num_rows > 0){
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Data</th>
+        <th>Client</th>
+        <th>Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    include_once 'connection.php';
+    $q = "SELECT * FROM activiry ORDER BY id_activity DESC";
+    $result = $conn->query($q);
+    if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            if($row['id_client']==$id){
-                echo '<li>'.$row['comment'].' - '. $row['date'].'</li>';
-            }
+            echo "<tr>";
+            echo "<td>".$row["id_activity"]."</td>";
+            echo "<td>".$row["date"]."</td>";
+            echo "<td>".$row["id_client"]."</td>";
+            echo "<td>".$row["comment"]."</td>";
+            echo "</tr>";
+
         }
     }
-}else{
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()) {
-            echo '<li>'.$row['comment'].' - '. $row['date'].'</li>';
-        }
-    }   
-}
- 
-?>
+    ?>
+    </tbody>
+</table>
