@@ -5,7 +5,7 @@
   foreach($fields as $key=>$value) {
     $postvars .= $key . "=" . $value . "&";
   }
-  $url = "http://localhost/ISFINAL2/ws/loginws.php";
+  include_once '../config.php';
   curl_setopt($ch,CURLOPT_URL,$url);
   curl_setopt($ch,CURLOPT_POST, 1);                //0 for a get request
   curl_setopt($ch,CURLOPT_POSTFIELDS,$postvars);
