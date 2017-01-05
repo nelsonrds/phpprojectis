@@ -96,6 +96,7 @@ session_write_close();
 
                                 $sql = "INSERT INTO users (name, username, password, email, isadmin, status)
                                 VALUES ('$name', '$username', '$passmd5', '$email', '$isadmin', '1')";
+                                //teste
 
                                 if ($conn->query($sql) === TRUE) {
                                     echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Criado com Sucesso!</div>';
