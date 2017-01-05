@@ -1,6 +1,7 @@
 connection.php
 clients/*
-.idea/
+.idea/*
+
 # Created by https://www.gitignore.io/api/phpstorm
 
 ### PhpStorm ###
