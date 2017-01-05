@@ -7,7 +7,7 @@
   	$link = mysql_connect('localhost','root','') or die('Cannot connect to the DB');
   	mysql_select_db('empresaxpto',$link) or die('Cannot select the DB');
 
-    $query = "SELECT * from users WHERE username='$user' and password='$pass'";
+    $query = "SELECT * from users WHERE username='$user' and password='$pass' and status=1";
     $result = mysql_query($query,$link) or die('Errant query:  '.$query);
 
     $posts = array();
