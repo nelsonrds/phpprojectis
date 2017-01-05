@@ -94,7 +94,7 @@ session_write_close();
                             if($password == $repassword){
                                 $passmd5 = md5($password);
 
-                                $sql = "INSERT INTO Users (name, username, password, email, isadmin, status)
+                                $sql = "INSERT INTO users (name, username, password, email, isadmin, status)
                                 VALUES ('$name', '$username', '$passmd5', '$email', '$isadmin', '1')";
 
                                 if ($conn->query($sql) === TRUE) {

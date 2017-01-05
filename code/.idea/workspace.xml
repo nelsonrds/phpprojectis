@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fc7dfa1e-45b9-40e8-877a-83b4e6846946" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs.php" afterPath="$PROJECT_DIR$/logs.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registar.php" afterPath="$PROJECT_DIR$/registar.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,14 +18,28 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="logs.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="logs.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logs.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="516">
-              <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+              <caret line="34" column="48" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
               <folding>
                 <marker date="1483558623789" expanded="true" signature="189:257" ph="SELECT * FRO... activiry" />
                 <marker date="1483558623789" expanded="true" signature="287:335" ph="SELECT * FRO... activiry" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registar.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/registar.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="86" column="33" lean-forward="true" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+              <folding>
+                <marker date="1483613040498" expanded="true" signature="3823:3869" ph="Select * fro... users" />
+                <marker date="1483613040498" expanded="true" signature="4147:4316" ph="INSERT INTO users... " />
+                <marker date="1483613040498" expanded="true" signature="4988:5038" ph="INSERT INTO activiry... " />
               </folding>
             </state>
           </provider>
@@ -38,6 +52,7 @@
       <find>reposi</find>
       <find>bootstrap</find>
       <find>//</find>
+      <find>user</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -50,6 +65,7 @@
         <option value="$PROJECT_DIR$/verify.php" />
         <option value="$PROJECT_DIR$/ahome.php" />
         <option value="$PROJECT_DIR$/logs.php" />
+        <option value="$PROJECT_DIR$/registar.php" />
       </list>
     </option>
   </component>
@@ -82,8 +98,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -98,6 +112,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -193,11 +209,12 @@
       <workItem from="1483539077574" duration="2925000" />
       <workItem from="1483557069105" duration="151000" />
       <workItem from="1483557439686" duration="1214000" />
+      <workItem from="1483612328667" duration="624000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11135000" />
+    <option name="totallyTimeSpent" value="11759000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -257,6 +274,17 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/logs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1483558623789" expanded="true" signature="189:257" ph="SELECT * FRO... activiry" />
+            <marker date="1483558623789" expanded="true" signature="287:335" ph="SELECT * FRO... activiry" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/createdir.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -394,13 +422,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ws/consumeLoginWs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="58" lean-forward="false" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../ws/consumeLoginWs.php" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -408,13 +430,6 @@
             <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/registar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="59" lean-forward="false" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -469,10 +484,22 @@
     <entry file="file://$PROJECT_DIR$/logs.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
-          <caret line="34" column="48" lean-forward="true" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+          <caret line="34" column="48" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
           <folding>
             <marker date="1483558623789" expanded="true" signature="189:257" ph="SELECT * FRO... activiry" />
             <marker date="1483558623789" expanded="true" signature="287:335" ph="SELECT * FRO... activiry" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/registar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="86" column="33" lean-forward="true" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+          <folding>
+            <marker date="1483613040498" expanded="true" signature="3823:3869" ph="Select * fro... users" />
+            <marker date="1483613040498" expanded="true" signature="4147:4316" ph="INSERT INTO users... " />
+            <marker date="1483613040498" expanded="true" signature="4988:5038" ph="INSERT INTO activiry... " />
           </folding>
         </state>
       </provider>
