@@ -112,7 +112,7 @@ session_write_close();
                         if(1 == 1){
                             if($password == $repassword){
                                 $passmd5 = md5($password);
-                                $sql = "UPDATE Users SET name = '$name', username = '$username', password = '$passmd5', email = '$email', isadmin = '$isadmin', status = '1' WHERE id_user = '$id' ";
+                                $sql = "UPDATE users SET name = '$name', username = '$username', password = '$passmd5', email = '$email', isadmin = '$isadmin', status = '1' WHERE id_user = '$id' ";
 
                                 if ($conn->query($sql) === TRUE) {
                                     echo '<div class="alert alert-success"><strong>Success!</strong> Utilizador Alterado com Sucesso!</div>';
