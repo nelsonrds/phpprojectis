@@ -95,7 +95,7 @@ session_write_close();
                 if(isset($_POST['go'])){
 
                     $name = $_POST['name'];
-                    $username = $_POST['user'];
+                    //$username = $_POST['user'];
                     $password = $_POST['pass1'];
                     $repassword = $_POST['pass2'];
                     $email = $_POST['email'];
