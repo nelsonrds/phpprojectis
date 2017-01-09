@@ -5,6 +5,12 @@ if(!isset($_SESSION['user']) && !isset($_SESSION['password'])){
     header("location:index.php");
 }
 
+if(isset($_SESSION['isadmin'])) {
+  if (($_SESSION['isadmin'])!=1) {
+    header("location:index.php");
+  }
+}
+
 $id = $_GET['id'];
 
 include_once 'connection.php';
@@ -24,15 +30,15 @@ session_write_close();
 
 <html>
 <?php include 'header.php'; ?>
-    
+
     <body>
-        
+
         <div class="container">
             <div class="page-header">
                 <h1>Página de Administração <small> - NH, Lda</small> </h1>
             </div>
             <h3>Repositório ./<?php echo $username; ?></h3>
-            
+
             <div class="panel panel-default">
                 <div class="panel-body">
                     <?php
@@ -42,7 +48,7 @@ session_write_close();
                             $resources = opendir($dir);
                             while(($entry = readdir($resources)) !== FALSE){
                                 if($entry !='.' && $entry != '..'){
-                                    echo '<p><a href="file.php?dir='.$dir."/".$entry.'"><img src="images/pdf.png" style="width:25px;height:25px;">'."./".$entry .'</a><a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';   
+                                    echo '<p><a href="file.php?dir='.$dir."/".$entry.'"><img src="images/pdf.png" style="width:25px;height:25px;">'."./".$entry .'</a><a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';
                                 }
                                 $size++;
                             }
@@ -52,13 +58,13 @@ session_write_close();
                         }else{
                             echo "Nenhuma diretoria criada!";
                             echo '<a href="createdir.php?name='.$username.'&id='.$id.'">  <button type="button" class="btn btn-warning btn-xs">Criar</button></a>';
-                            
+
                         }
-                                            
+
                         ?>
                 </div>
             </div>
-            
+
             <form action="upload.php" method="post" enctype="multipart/form-data">
                 <label>
                 <input type="file" name="fileToUpload" style="none" id="fileToUpload">
@@ -68,7 +74,7 @@ session_write_close();
                 <input type="submit" value="Submeter" class="btn btn-danger" name="submit">
             </form>
             <a href="ahome.php"><button type="button" class="btn btn-default">Voltar</button></a>
-            
+
             <br>
             <br>
             <br>
@@ -82,7 +88,7 @@ session_write_close();
                 </div>
             </div>
         </div>
-        
+
         <?php include 'footer.php'; ?>
     </body>
 </html>

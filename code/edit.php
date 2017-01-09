@@ -5,6 +5,12 @@ if(!isset($_SESSION['user'])){
     header("location:index.php");
 }
 
+if(isset($_SESSION['isadmin'])) {
+  if (($_SESSION['isadmin'])!=1) {
+    header("location:index.php");
+  }
+}
+
 $id = $_GET['id'];
 
 include_once 'connection.php';
