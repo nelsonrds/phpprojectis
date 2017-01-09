@@ -48,7 +48,9 @@ session_write_close();
                             $resources = opendir($dir);
                             while(($entry = readdir($resources)) !== FALSE){
                                 if($entry !='.' && $entry != '..'){
-                                    echo '<p><a href="file.php?dir='.$dir."/".$entry.'"><img src="images/pdf.png" style="width:25px;height:25px;">'."./".$entry .'</a><a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';
+                                    $arg = pathinfo($entry);
+                                    $extension = $arg['extension'];
+                                    echo '<p><a href="file.php?dir='.$dir."/".$entry.'"><img src="images/'.$extension.'.png" style="width:25px;height:25px;">'."./".$entry .'</a><a href="removefile.php?id='.$id.'&fileRemove=clients/'.$username.'/'.$entry.'"><img src="images/del.png" style="width:20px;height:20px;"></a><p>';
                                 }
                                 $size++;
                             }

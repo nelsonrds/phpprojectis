@@ -12,7 +12,7 @@ echo $username = $_POST['username'];
 $target_dir = "../clients/".$username."/";
 
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$pdftype = pathinfo($target_file,PATHINFO_EXTENSION);
+$filetype = pathinfo($target_file,PATHINFO_EXTENSION);
 $uploadOk = 1;
 
 if(file_exists($target_file)){
@@ -20,11 +20,8 @@ if(file_exists($target_file)){
     echo "Sorry, this file already exists!";
 }
 
-if($_FILES["fileToUpload"]["size"] > 500000){
-    $uploadOk = 0;
-}
 
-if($pdftype != "pdf") {
+if($filetype != "pdf" && $filetype != "docx" && $filetype != "xlsx" && $filetype != "pptx" && $filetype != "csv") {
     $uploadOk = 0;
 }
 
